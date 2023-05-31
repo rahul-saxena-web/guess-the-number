@@ -1,0 +1,10 @@
+.container-fluid {
+    margin: 0px;
+    padding: 10px 0px;
+    text-align: center;
+    color: white;
+    background-color: #222831;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}

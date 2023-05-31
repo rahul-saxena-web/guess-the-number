@@ -1,0 +1,44 @@
+<div class="container-fluid">
+    <img src="../../assets/Guessing.png" alt="">
+    <div class="row" *ngIf="hide">
+
+        <div class="col-xl-6 col-lg-6 col-md-8 col-sm-8">
+            <form [formGroup]="playerNameForm" id="playerForm">
+                <input class="form-control form-control-lg" type="text" placeholder="Enter Your Name" formControlName="playerName" autocomplete="off" autocapitalize="on">
+            </form>
+        </div>
+        <button form="playerForm" type="button" class="btn btn-danger btn-lg" [disabled]="!playerNameForm.valid" (click)="nameSubmit()">Submit</button>
+
+    </div>
+    <div class="row" *ngIf="guessHide">
+        <div class="col-xl-6 col-lg-6 col-md-8 col-sm-8">
+            <form [formGroup]="valueForm">
+                <input class="form-control form-control-lg" type="number" placeholder="Guess The Number (1 to 100)" formControlName="guessedNumber" (keypress)="checkData($event)" min="1" max="100" autocomplete="off" autocapitalize="on">
+            </form>
+        </div>
+        <button type="button" class="btn btn-danger btn-lg" [disabled]="!valueForm.valid" (click)="checkNumber()">Check</button>
+    </div>
+    <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+            <ul>
+                <li *ngIf="displayName">
+                    <h4>Hey {{player}}, guess the number.</h4>
+                </li>
+                <li *ngIf="guessedLow">
+                    <h4>⚓ Your Guess is <b style="color:blue">Low!!!!</b></h4>
+                </li>
+                <li *ngIf="guessedHigh">
+                    <h4>
+                        🎈 Your Guess is <b style="color:red">High!!!!</b>
+                    </h4>
+                </li>
+                <li *ngIf="guessedRight">
+                    <h4 style="color: green">
+                        🎉 Congratulations {{player}}, you won this game in {{attempts}} Attempts.
+                    </h4>
+                    <button type="button" class="btn btn-danger btn-lg" style="margin-top: 5px" (click)="playAgain()">Let's Play Again</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
